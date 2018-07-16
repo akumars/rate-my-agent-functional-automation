@@ -1,10 +1,5 @@
-import { expect } from 'chai'
-import supertest from 'supertest'
+import { api } from './get-endpoint'
 
-const should = require('chai').should()
-
-
-const api = supertest('https://api.ratemyagent.com.au')
 let Cookies
 
 describe('Get Session', () => {
@@ -12,7 +7,7 @@ describe('Get Session', () => {
     api.post('/Account/Login')
       .set('Content-Type', 'application/json')
       .send({
-        email: 'sak.arun@gmail.com',
+        email: 'sak_arun2000@yahoo.com',
         password: 'Test007!',
       })
       .expect('Content-Type', /json/)
