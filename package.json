@@ -9,7 +9,8 @@
   "scripts": {
     "postinstall": "node ./node_modules/protractor/bin/webdriver-manager update",
     "start:protractor-tests": "protractor protractor-tests/conf.js",
-    "start:wd-manager": "node ./node_modules/protractor/bin/webdriver-manager start"
+    "start:wd-manager": "node ./node_modules/protractor/bin/webdriver-manager start",
+    "start:mocha-tests": "mocha --compilers js:babel-core/register --timeout 25000"
   },
   "author": "Arun Kumar",
   "devDependencies": {
@@ -23,13 +24,22 @@
     "chai-as-promised": "^7.1.1",
     "chromedriver": "^2.35.0",
     "cucumber": "^4.2.1",
+    "dotenv": "^5.0.1",
     "eslint": "^4.16.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-protractor": "^1.40.0",
+    "eslint-plugin-react": "^7.6.1",
     "protractor": "^5.3.2",
     "protractor-cucumber-framework": "^6.0.0",
     "selenium-webdriver": "^4.0.0-alpha.1",
     "webdriver-manager": "^12.1.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "eslint-plugin-mocha": "^5.1.0",
+    "mocha": "^5.2.0",
+    "supertest": "^3.1.0"
   }
 }
