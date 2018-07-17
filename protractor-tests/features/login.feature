@@ -2,8 +2,8 @@
 Feature: User authentication scenarios
 
   Scenario Outline: Login - Failure Scenarios
-    Given I go to "https://www.ratemyagent.com.au/"
-    And I click the "Log in" link
+    Given I navigate to ratemyagent website
+    When I click the "Log in" link
     And I enter the "login.Email" as "<Email>"
     And I enter the "login.Password" as "test"
     And I click the "Log In" button

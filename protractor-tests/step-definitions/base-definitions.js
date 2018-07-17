@@ -18,8 +18,8 @@ const getFieldIdentifier = elementName => ({
   'shortlist-heading': '.rmaUserShortlist h1',
 }[elementName] || elementName)
 
-Given(/^I go to "([^"]*)"$/, { timeout: 20000 }, async (site) => {
-  await browser.get(site)
+Given(/^I navigate to ratemyagent website$/, { timeout: 20000 }, async () => {
+  await browser.get(browser.baseUrl)
 })
 
 When(/^I click the "([^"]*)" link$/, async (linkText) => {

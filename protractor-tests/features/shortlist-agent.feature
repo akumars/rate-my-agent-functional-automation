@@ -6,8 +6,8 @@ Feature: Shortlist Agents
   I should be able to view a list of shortlisted agents
 
   Scenario: Shortlist Agents successfully
-    Given I go to "https://www.ratemyagent.com.au/"
-    And I click the "Log in" link
+    Given I navigate to ratemyagent website
+    When I click the "Log in" link
     And I enter the "login.Email" as "sak.arun@gmail.com"
     And I enter the "login.Password" as "Test007!"
     And I click the "Log In" button
