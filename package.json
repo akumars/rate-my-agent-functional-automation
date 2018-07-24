@@ -10,7 +10,7 @@
     "postinstall": "node ./node_modules/protractor/bin/webdriver-manager update",
     "start:protractor-tests": "protractor protractor-tests/conf.js",
     "start:wd-manager": "node ./node_modules/protractor/bin/webdriver-manager start",
-    "start:mocha-tests": "mocha --compilers js:babel-core/register --timeout 25000"
+    "start:mocha-tests": "mocha --require babel-core/register --timeout 10000"
   },
   "author": "Arun Kumar",
   "devDependencies": {

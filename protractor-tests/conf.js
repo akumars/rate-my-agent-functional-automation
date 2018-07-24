@@ -26,6 +26,17 @@ const config = {
   },
   onPrepare() {
     browser.manage().window().maximize() // maximize the browser before executing the feature files
+    switch (browser.baseUrl) {
+      case ('https://www.ratemyagent.com.au/'):
+        browser.username = 'sak.arun@gmail.com'
+        browser.password = 'Test007!'
+        break
+      case ('https://www.ratemyagent.com/'):
+        browser.username = 'sak.arun@gmail.com'
+        browser.password = 'Test007!'
+        break
+      default:
+    }
   },
 }
 

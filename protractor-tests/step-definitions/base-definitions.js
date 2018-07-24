@@ -1,9 +1,9 @@
-const { Given, When, Then } = require('cucumber')
+const { Given, When } = require('cucumber')
 const chai = require('chai')
 const chaiAsPromised = require('chai-as-promised')
 
 chai.use(chaiAsPromised)
-const expect = chai.expect
+const { expect } = chai
 
 const getFieldIdentifier = elementName => ({
   profile: '.rmaUserNav_profile-button',
@@ -18,7 +18,9 @@ const getFieldIdentifier = elementName => ({
   'shortlist-heading': '.rmaUserShortlist h1',
 }[elementName] || elementName)
 
-Given(/^I navigate to ratemyagent website$/, { timeout: 20000 }, async () => {
+const { pageTimeOut } = browser.params
+
+Given(/^I navigate to ratemyagent website$/, { timeout: pageTimeOut }, async () => {
   await browser.get(browser.baseUrl)
 })
 
@@ -40,7 +42,7 @@ When(/^I click the "([^"]*)" element$/, async (elementName) => {
   await element(by.css(elementIdentifier)).click()
 })
 
-When(/^I click on "([^"]*)" from "([^"]*)" search result$/, { timeout: 20000 }, async (locationName, resultSetType) => {
+When(/^I click on "([^"]*)" from "([^"]*)" search result$/, { timeout: pageTimeOut }, async (locationName, resultSetType) => {
   await element(by.cssContainingText(`rma-auto-search-result-set[type=${resultSetType}]  .rmaAutoSearchResult__details`, locationName)).click()
 })
 
@@ -55,12 +57,12 @@ When(/^I should see the "([^"]*)" button$/, async (buttonName) => {
   `${buttonName} button not visible yet`)
 })
 
-When(/^I see "([^"]*)" error message as "([^"]*)"$/, { timeout: 10000 }, async (elementName, errorText) => {
+When(/^I see "([^"]*)" error message as "([^"]*)"$/, { timeout: pageTimeOut }, async (elementName, errorText) => {
   const errorToastElement = await element(by.css(`[ng-show="${elementName}.error.message"]`))
   await expect(errorToastElement.getText()).to.eventually.equal(errorText)
 })
 
-When(/^The "([^"]*)" should have the text "([^"]*)"$/, { timeout: 10000 }, async (elementName, expElementText) => {
+When(/^The "([^"]*)" should have the text "([^"]*)"$/, { timeout: pageTimeOut }, async (elementName, expElementText) => {
   const elementIdentifier = getFieldIdentifier(elementName)
   const elementText = await element(by.css(elementIdentifier))
   await expect(elementText.getText()).to.eventually.include(expElementText)
@@ -70,6 +72,11 @@ When(/^I enter the "([^"]*)" as "([^"]*)"$/, async (inputName, inputValue) => {
   const elementIdentifier = getFieldIdentifier(inputName)
   const input = await element(by.model(elementIdentifier))
   await input.sendKeys(inputValue)
+})
+
+When(/^I login with valid credentials$/, async () => {
+  await element(by.model('login.Email')).sendKeys(browser.username)
+  await element(by.model('login.Password')).sendKeys(browser.password)
 })
 
 When(/^I "([^"]*)" shortlist the agent number "([^"]*)"$/, async (shortlistAction, agentId) => {

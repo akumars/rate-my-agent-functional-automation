@@ -11,8 +11,8 @@ describe('Adding agents to shortlist', () => {
     api.post('/Account/Login')
       .set('Content-Type', 'application/json')
       .send({
-        email: 'sak_arun2000@yahoo.com',
-        password: 'Test007!',
+        email: process.env.EMAIL,
+        password: process.env.PASSWORD,
       })
       .expect('Content-Type', /json/)
       .expect(200)
